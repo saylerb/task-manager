@@ -1,3 +1,6 @@
+require "models/task_manager"
+require "yaml/store"
+
 class TaskManagerApp < Sinatra::Base
   set :root, File.expand_path("..", __dir__)
 
@@ -15,7 +18,12 @@ class TaskManagerApp < Sinatra::Base
   end
 
   post "/tasks" do
-    "<p>Params: #{params}</p> <p>Task params: #{params[:task]}</p>"
+    task_manager.create(params[:task])
+    redirect "/tasks"
   end
 
+  def task_manager
+    database = YAML::Store.new('db/task_manager')
+    @task_manager ||= TaskManager.new(database)
+  end
 end
