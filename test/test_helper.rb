@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require "minitest/autorun"
 require "minitest/emoji"
 require "tilt/erb"
-require "capybara"
+require "capybara/dsl"
 
 module TestHelpers
   def teardown
@@ -20,6 +20,10 @@ end
 
 Capybara.app = TaskManagerApp
 
-class FeatureTest < Minitst::Test
+class FeatureTest < Minitest::Test
   include Capybara::DSL
+  include TestHelpers
 end
+
+
+
