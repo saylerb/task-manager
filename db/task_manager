@@ -1,9 +1,9 @@
 ---
 tasks:
 - id: 1
-  title: Make cookies
-  description: Chocolate chip cookies are the best
+  title: MAKE
+  description: CHOCOLATE CHIPPPS
 - id: 2
   title: Buy milk
   description: Pair with cookies
-total: 2
+total: 3
