@@ -8,7 +8,8 @@ class UserSeesAllTasksTest < FeatureTest
 
     visit "/tasks"
 
-    assert page.has_content?("(1)")
+    assert page.has_content?("1:")
+    assert page.has_content?("1:")
 
   end
 
