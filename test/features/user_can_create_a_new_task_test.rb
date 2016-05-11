@@ -7,8 +7,13 @@ class UserCanCreateANewTaskTest < FeatureTest
     fill_in "task[title]", with: "Learn Capybara"
     fill_in "task[description]", with: "Capybara and Launchy funtime"
 
+    assert_equal 'tasks/new', current_path
+
     click_button "Create Task"
 
-    assert page.has_content?("Learn Capybara")
+    within(".task-1") do
+      assert page.has_content?("Learn Capybara")
+    end
+
   end
 end
