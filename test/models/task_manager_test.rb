@@ -23,8 +23,9 @@ class TaskManagerTest < Minitest::Test
   end
 
   def test_it_can_find_a_single_task
+    task_manager.create({title: "TDD", description: "Learn to test"})
     task_manager.create({title: "Write Test", description: "Write the find test"})
-    task = task_manager.find(1)
+    task = task_manager.find(2)
 
     assert "Write Test", task.title
     assert "Write the find test", task.description
