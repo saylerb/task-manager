@@ -14,7 +14,7 @@ class TaskManagerTest < Minitest::Test
 
   def test_it_can_return_all_tasks
     task_manager.create({title: "TDD", description: "Learn to test"})
-    task_manager.create({title: "Write Tests", description: "Write the Find Test"})
+    task_manager.create({title: "Write Tests", description: "Write the all test"})
     all_tasks = task_manager.all
 
     assert 2, all_tasks.length
@@ -23,6 +23,11 @@ class TaskManagerTest < Minitest::Test
   end
 
   def test_it_can_find_a_single_task
+    task_manager.create({title: "Write Test", description: "Write the find test"})
+    task = task_manager.find(1)
+
+    assert "Write Test", task.title
+    assert "Write the find test", task.description
   end
 
   def test_it_can_update_a_single_task
