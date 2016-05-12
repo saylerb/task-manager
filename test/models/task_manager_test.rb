@@ -32,9 +32,23 @@ class TaskManagerTest < Minitest::Test
   end
 
   def test_it_can_update_a_single_task
+    task_id = task_manager.create({title: "TDD", description: "Learn to test"})
+    task_manager.update(task_id, {title: "Write Test", description: "Write the find test"})
+
+    task = task_manager.find(task_id)
+
+    assert "Write Test", task.title
+    assert "Write the find test", task.description
   end
 
   def test_if_can_destroy_a_single_task
+    task_id = task_manager.create({title: "TDD", description: "Learn to test"})
+
+    assert_equal 1, task_manager.all.size
+
+    task_manager.destroy(task_id)
+
+    assert_equal 0, task_manager.all.size
   end
 
 end

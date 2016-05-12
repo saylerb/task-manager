@@ -23,11 +23,10 @@ class TaskManager
 
   def all
     table.to_a.map { |data| Task.new(data) }
-
   end
 
   def raw_task(id)
-    table.where(:id => id).to_a.first
+    table.where(id: id).to_a.first
   end
 
   def find(id)
@@ -35,21 +34,15 @@ class TaskManager
   end
 
   def update(id, task)
-    database.transaction do 
-      target_task = database["tasks"].find { |data| data["id"] == id }
-      target_task["title"] = task[:title]
-      target_task["description"] = task[:description]
-    end
+    table.where(id: id).update(task)
   end
 
   def destroy(id)
-    database.transaction do 
-      database["tasks"].delete_if { |task| task["id"] == id }
-    end
+    table.where(id: id).delete
   end
 
   def delete_all
     table.delete
   end
-
+  
 end
