@@ -4,12 +4,12 @@ class TaskManagerTest < Minitest::Test
   include TestHelpers
 
   def test_it_creates_a_task
-    task_manager.create({title: "TDD", description: "Learn to test"})
-    task = task_manager.find(1)
+    task_id = task_manager.create({title: "TDD", description: "Learn to test"})
+    task = task_manager.find(task_id)
 
     assert_equal "TDD", task.title
     assert_equal "Learn to test", task.description
-    assert_equal 1, task.id
+    assert_equal task_id, task.id
   end
 
   def test_it_can_return_all_tasks
@@ -23,9 +23,9 @@ class TaskManagerTest < Minitest::Test
   end
 
   def test_it_can_find_a_single_task
-    task_manager.create({title: "TDD", description: "Learn to test"})
-    task_manager.create({title: "Write Test", description: "Write the find test"})
-    task = task_manager.find(2)
+    task_id_1 = task_manager.create({title: "TDD", description: "Learn to test"})
+    task_id_2 = task_manager.create({title: "Write Test", description: "Write the find test"})
+    task = task_manager.find(task_id_2)
 
     assert "Write Test", task.title
     assert "Write the find test", task.description
