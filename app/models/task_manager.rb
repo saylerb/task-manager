@@ -10,9 +10,8 @@ class TaskManager
   def create(task)
     database.transaction do
       database["tasks"] ||= []
-      database["total"] ||= 0
+      database["total"] ||= 1
       database["total"] += 1
-      # require "pry"; binding.pry
       database['tasks'] << { "id" => database['total'],
                              "title" => task[:title],
                              "description" => task[:description] }
